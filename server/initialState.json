@@ -20,6 +20,34 @@
     }
   ],
   "tasks": [
+    {
+      "id": "hardcoded-1",
+      "title": "Interview for Spreetail",
+      "createdBy": 1,
+      "items": [
+        {
+          "title": "Wire up Redux with Sockets.io",
+          "complete": true,
+          "completedBy": 1,
+          "completedDate": "2018-04-08T09:37:42.000-06:00"
+        },
+        {
+          "title": "Make UI",
+          "complete": false,
+          "completedBy": null,
+          "completedDate": null
+        }
+      ],
+      "comments": [
+        {
+          "message": "hey thats cool",
+          "user": 0,
+          "createdDate": "2018-04-08T11:37:42.000-06:00"
+        }
+      ]
+    },
+    {
 
+    }
   ]
 }

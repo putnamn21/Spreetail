@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CssBaseline from 'material-ui/CssBaseline'
-import { connect } from 'react-redux'
-import actions from '../actions'
 import {MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import lightBlue from 'material-ui/colors/lightBlue'
-import blueGrey from 'material-ui/colors/blueGrey'
+import lime from 'material-ui/colors/lime'
 
 import Header from './Header'
 import RegisterUser from './RegisterUser'
+import withUsers from '../containers/Users'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -16,7 +16,7 @@ const theme = createMuiTheme({
       main: lightBlue[700],
     },
     secondary: {
-      main: blueGrey[300],
+      main: lime[500],
     },
   },
 })
@@ -28,7 +28,7 @@ const pageBackground = {
   height: '100vh'
 }
 
-const App = ({currentUser, users, selectUser}) => {console.log(currentUser, users);return(
+const App = ({currentUser, users, selectUser}) => (
   <MuiThemeProvider theme={theme}>
     <div style={pageBackground}>
       <CssBaseline/>
@@ -39,7 +39,7 @@ const App = ({currentUser, users, selectUser}) => {console.log(currentUser, user
       }
     </div>
   </MuiThemeProvider>
-)}
+)
 
 App.propTypes = {
   currentUser: PropTypes.number,
@@ -53,15 +53,4 @@ App.propTypes = {
   selectUser: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    users: state.users,
-    currentUser: state.currentUser
-  })
-}
-
-const mapDispatchToProps = {
-  selectUser: actions.selectUser
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withUsers(App)

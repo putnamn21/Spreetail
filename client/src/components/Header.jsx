@@ -3,9 +3,8 @@ import Typography from 'material-ui/Typography'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Grid from 'material-ui/Grid'
-import Avatar from 'material-ui/Avatar'
-import Chip from 'material-ui/Chip'
-import MoodIcon from '@material-ui/icons/Mood'
+import UserChip from './UserChip'
+
 
 const styles = theme => ({
   header: {
@@ -15,7 +14,8 @@ const styles = theme => ({
   },
   chip: {
     margin: theme.spacing.unit,
-  }
+  },
+
 })
 
 const Header = ({classes, user}) => (
@@ -25,14 +25,7 @@ const Header = ({classes, user}) => (
         Spreetail Task Manager
       </Typography>
       {user !== null
-       ? <Chip
-           avatar={
-             <Avatar>
-               <MoodIcon />
-             </Avatar>
-           }
-           label={`${user.fName} ${user.lName}`}
-           className={classes.chip}/>
+       ? <UserChip user={user} light={true}/>
        : null}
     </Grid>
   </header>

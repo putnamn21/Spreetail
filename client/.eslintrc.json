@@ -23,6 +23,7 @@
     "sourceType": "module"
   },
   "rules": {
+      "react/display-name": 0,
       "indent": ["error", 2, { "SwitchCase": 1 }],
       "linebreak-style": [
           "error",
