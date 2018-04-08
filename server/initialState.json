@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "fName": "Troy",
+      "lName": "Smith",
+      "isActive": false
+    },
+    {
+      "fName": "Drew",
+      "lName": "Gates",
+      "isActive": false
+    },
+    {
+      "fName": "Sheryl",
+      "lName": "Deringer",
+      "isActive": false
+    }
+  ],
+  "tasks": [
+
+  ]
+}

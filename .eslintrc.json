@@ -1,0 +1,42 @@
+{
+    "env": {
+      "node": true,
+      "mocha": true,
+      "jasmine": true
+    },
+    "extends": "eslint:recommended",
+    "settings": {
+      "import/ignore": [
+        "node_modules",
+        "\\.(coffee|scss|css|less|hbs|svg|json)$"
+      ]
+    },
+    "sourceType": "module",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      },
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "no-mixed-spaces-and-tabs": [
+          "error",
+          "smart-tabs"
+        ],
+        "no-console": 0
+    }
+}
