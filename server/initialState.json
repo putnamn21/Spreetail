@@ -3,17 +3,20 @@
     {
       "fName": "Troy",
       "lName": "Smith",
-      "isActive": false
+      "isActive": false,
+      "socketId": null
     },
     {
       "fName": "Drew",
       "lName": "Gates",
-      "isActive": false
+      "isActive": false,
+      "socketId": null
     },
     {
       "fName": "Sheryl",
       "lName": "Deringer",
-      "isActive": false
+      "isActive": false,
+      "socketId": null
     }
   ],
   "tasks": [

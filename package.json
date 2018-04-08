@@ -7,6 +7,7 @@
     "start-client": "webpack-dev-server --inline --watch --hot --config client/webpack.config.js",
     "test-client": "mocha --compilers js:babel-core/register \"client/test/**/*@(.js|.jsx)\"",
     "test-client:watch": "npm run test-client -- --watch",
+    "test-common": "mocha --compilers js:babel-core/register  \"common/test/**/*@(.js|.jsx)\"",
     "start-server": "babel-node server/index.js",
     "test-server": "mocha --compilers js:babel-core/register  \"server/test/**/*@(.js|.jsx)\"",
     "test-server:watch": "npm run test-server -- --watch"

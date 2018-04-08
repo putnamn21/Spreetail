@@ -3,7 +3,7 @@ import {
     expect
 } from 'chai'
 
-import reducer from '../src/reducer'
+import reducer from '../reducer'
 
 describe('reducer', () => {
   describe('SET_STATE', () => {
@@ -14,11 +14,11 @@ describe('reducer', () => {
       }
       const action = {
         type: 'SET_STATE',
-        state: {
+        payload: {
           foo: 'bar'
         }
       }
-      const nextState = reducer(state, action)
+      const nextState = reducer.SET_STATE(state, action)
       expect(nextState).to.deep.equal({
         key: 'value',
         foo: 'bar'
