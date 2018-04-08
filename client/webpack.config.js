@@ -68,7 +68,7 @@ module.exports = {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackIncludeAssetsPlugin({
-      assets: [{ path: 'https://fonts.googleapis.com/css?family=Grand+Hotel', type: 'css' }],
+      assets: [{ path: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500', type: 'css' }],
       append: false,
       publicPath: ''
     }),

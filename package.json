@@ -51,6 +51,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "material-ui": "^1.0.0-beta.41",
     "node-time-uuid": "^0.1.5",
     "prop-types": "^15.5.10",

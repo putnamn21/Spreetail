@@ -16,10 +16,10 @@ const socket = io(`${location.protocol}//${location.hostname}:3000`)
 
 const createStoreWithMiddleware = applyMiddleware(remoteActionMiddleware(socket))(createStore)
 
-const store = createStoreWithMiddleware(reducer)
+const store = createStoreWithMiddleware(reducer, {})
 
-socket.on('state', state => {
-  store.dispatch(actions.setState(state))
+socket.on('action', action => {
+  store.dispatch(action)
 })
 
 const div = document.createElement('div')

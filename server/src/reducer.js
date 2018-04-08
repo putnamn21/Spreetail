@@ -1,5 +1,14 @@
 import { handleActions } from 'redux-actions'
-import * as commonReducers from '../../common/reducer.js'
+import commonReducers from '../../common/reducer'
 import initialState from '../initialState.json'
+import constants from './constants'
 
-export default handleActions({...commonReducers}, initialState)
+const selectUser = (state, payload) => {
+  console.log(payload)
+  return state
+}
+
+export default handleActions({
+  ...commonReducers,
+  [constants.SELECT_USER]: selectUser
+}, initialState)
