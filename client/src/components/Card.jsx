@@ -11,9 +11,9 @@ const styles = () => ({
   }
 })
 
-const CardComponent = ({children, classes}) => (
+const CardComponent = ({children, classes, ...props}) => (
   <Grow in={true} timeout={1000}>
-    <Card className={classes.card}>
+    <Card className={classes.card} {...props}>
       <CardContent>
         {children}
       </CardContent>

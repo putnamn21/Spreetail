@@ -10,7 +10,6 @@ import Select from 'material-ui/Select'
 import {upperFirst, lowerCase} from 'lodash'
 
 import TextSubmit from './TextSubmit'
-import CardComponent from './Card'
 import withTasks from '../containers/TasksHOC'
 import Task from './Task'
 
@@ -28,13 +27,8 @@ const styles = () => ({
   },
   tasksWrap: {
     flex: '1',
-    maxWidth: '50rem',
     margin: '0 auto',
     overflow: 'auto'
-  },
-  card: {
-    margin: '2rem',
-    minWidth: '6rem'
   },
   center: {
     textAlign: 'center'
@@ -75,12 +69,11 @@ const Tasks = ({tasks, changeFilter, filters, addTask, classes, currentUser, ...
           justify="space-around"
           alignItems="flex-start">
             {tasks.length > 0 ? tasks.map((task, i) => (
-              <CardComponent key={i}>
                 <Task
+                  key={i}
                   task={task}
                   currentUser={currentUser}
                   {...props}/>
-              </CardComponent>
             )): null}
         </Grid>
         <div className={classes.addTaskBar}>
