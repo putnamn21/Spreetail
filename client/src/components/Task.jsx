@@ -26,15 +26,19 @@ const styles = {
     alignItems: 'center'
   },
   paper: {
-    position: 'absolute',
-    left: '50%',
-    top: '10rem',
-    transform: 'translateX(-50%)',
+    maxHeight: '95%',
+    overflow: 'auto',
     padding: '1rem',
     maxWidth: '60rem',
+    width: '100%',
     '&:focus': {
       outline: 'none'
     }
+  },
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }
 
@@ -59,8 +63,8 @@ class Task extends React.Component {
 
 
   render() {
-    const {task, classes} = this.props
-    const completed = task.items.filter(item => item.complete).length
+    const {task, classes, ...props} = this.props
+    const completed = task.items.filter(item => item !== null && item.complete).length
 
     return (
       <CardComponent className={classes.container} onClick={this.handleOpen}>
@@ -75,10 +79,13 @@ class Task extends React.Component {
           <Typography variant="body2" color="primary">{completed} / {task.items.length}</Typography>
         </div>
         <Modal
+          classes={{
+            root: classes.root
+          }}
           open={this.state.modalOpen}
           onClose={this.handleClose}>
           <Paper className={classes.paper}>
-            <TaskDetails task={task}/>
+            <TaskDetails task={task} {...props}/>
           </Paper>
         </Modal>
       </CardComponent>

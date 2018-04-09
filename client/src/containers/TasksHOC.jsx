@@ -17,7 +17,7 @@ const filterTasks = (filter, tasks) => {
           return sum && item.complete
         }, true))
       break
-    case filters.FILTER_INPROGRESS:
+    case filters.FILTER_IN_PROGRESS:
       filteredTasks = tasks.filter(task => {
         const {allComplete, atleastOneComplete} = task.items.reduce((sum, item) => {
           return {

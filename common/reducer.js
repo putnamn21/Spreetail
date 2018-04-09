@@ -3,6 +3,7 @@ import constants from './constants'
 import {uniqueId, findIndex} from 'lodash'
 
 const setState = (state, action) => {
+  console.log(action.payload)
   if(action.payload){
     return update(state, {
       $merge: action.payload
@@ -53,15 +54,33 @@ const addItem = (state, {payload}) => {
   } else return state
 }
 
+const setItemComplete = (state, {payload}) => {
+  let index = findIndex(state.tasks, {id: payload.taskId})
+  console.log(index)
+  if (index > -1){
+    return update(state, {
+      tasks: {
+        [index] : {
+          items: {
+            [payload.itemId]: {
+              complete: { $set: payload.complete },
+              completedBy: { $set: payload.user },
+              completedDate: { $set: payload.date }
+            }
+          }
+        }
+      }
+    })
+  } else return state
+}
+
 const removeItem = (state, {payload}) => {
   let index = findIndex(state.tasks, {id: payload.taskId})
   if (index > -1){
     return update(state, {
       tasks: {
         [index] : {
-          items: {
-            $unset: [payload.itemIndex]
-          }
+          items: items => items.filter((el,i) => i !== payload.itemId)
         }
       }
     })
@@ -76,7 +95,7 @@ const addComment = (state, {payload}) => {
         [index] : {
           comments: {
             $push: [{
-              title: payload.message,
+              message: payload.message,
               user: payload.user,
               createdDate: payload.createdDate
             }]
@@ -93,9 +112,7 @@ const removeComment = (state, {payload}) => {
     return update(state, {
       tasks: {
         [index] : {
-          items: {
-            $unset: [payload.commentIndex]
-          }
+          comments: comments => comments.filter((el,i) => i !== payload.commentId)
         }
       }
     })
@@ -107,6 +124,7 @@ export default {
   [constants.ADD_TASK]      : addTask,
   [constants.REMOVE_TASK]   : removeTask,
   [constants.ADD_ITEM]      : addItem,
+  [constants.SET_ITEM_COMPLETE]: setItemComplete,
   [constants.REMOVE_ITEM]   : removeItem,
   [constants.ADD_COMMENT]   : addComment,
   [constants.REMOVE_COMMENT]: removeComment

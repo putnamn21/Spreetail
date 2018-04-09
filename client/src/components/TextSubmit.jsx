@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
-import AddIcon from '@material-ui/icons/Add'
 
 const styles = (theme) => ({
   textField: {
@@ -30,9 +28,12 @@ class TextSubmit extends React.Component {
       fieldValue: '',
       error: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(){
+  handleSubmit(e){
+    e.preventDefault()
     if(!this.state.fieldValue){
       this.setState({
         error: true
@@ -57,21 +58,16 @@ class TextSubmit extends React.Component {
     const {error, fieldValue} = this.state
     return(
       <div className={classes.container}>
-        <div>
+        <form onSubmit={this.handleSubmit}>
           <TextField
             error={error}
             label={error ? 'Error: cannot be empty' : label}
             className={classes.textField}
             value={fieldValue}
-            onChange={this.handleChange.bind(this)}
+            onChange={this.handleChange}
             margin="normal"
           />
-        </div>
-        <div>
-          <Button onClick={this.handleSubmit.bind(this)} variant="fab" color="secondary" className={classes.button}>
-            <AddIcon />
-          </Button>
-        </div>
+        </form>
       </div>
     )
   }

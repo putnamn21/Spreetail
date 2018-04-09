@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CssBaseline from 'material-ui/CssBaseline'
 import {MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import lightBlue from 'material-ui/colors/lightBlue'
+import cyan from 'material-ui/colors/cyan'
 import lime from 'material-ui/colors/lime'
 
 import Header from './Header'
@@ -14,7 +14,7 @@ import Tasks from './Tasks'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: lightBlue[700],
+      main: cyan[500],
     },
     secondary: {
       main: lime[500],

@@ -6,6 +6,7 @@ const constants = {
   'ADD_ITEM'      :'ADD_ITEM',
   'REMOVE_ITEM'   :'REMOVE_ITEM',
   'ADD_COMMENT'   :'ADD_COMMENT',
-  'REMOVE_COMMENT':'REMOVE_COMMENT'
+  'REMOVE_COMMENT':'REMOVE_COMMENT',
+  'SET_ITEM_COMPLETE': 'SET_ITEM_COMPLETE'
 }
 export default constants
