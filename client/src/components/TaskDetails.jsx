@@ -6,6 +6,8 @@ import moment from 'moment'
 import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
 import { withStyles } from 'material-ui/styles'
+import Button from 'material-ui/Button'
+import Delete from '@material-ui/icons/Delete'
 import List from 'material-ui/List'
 import TaskItem from './TaskItem'
 
@@ -14,9 +16,6 @@ import TextSubmit from './TextSubmit'
 const styles = (theme) => ({
   container: {
     minWidth: '200px'
-  },
-  divider : {
-    margin: '1rem 0'
   },
   taskContainer: {
     padding: '0 1rem 1rem 1rem',
@@ -35,16 +34,24 @@ const styles = (theme) => ({
     backgroundColor: '#fff',
     boxShadow: '1px 1px 6px rgba(0,0,0,0.3)'
   },
-  sectionHead: {
+  margin: {
     margin: '1rem 0'
+  },
+  topMargin: {
+    marginTop: '1rem'
+  },
+  remove: {
+    backgroundColor: theme.palette.error.light,
+    color: '#fff',
+    ['&:hover']: {
+      backgroundColor: theme.palette.error.main
+    }
   }
 })
 
-const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemComplete, removeItem, users}) => (
+const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemComplete, removeItem, users, removeTask}) => (
   <div>
-    <Typography color="primary" variant="display3" align="center">{task.title}</Typography>
-    <Divider className={classes.divider}/>
-    <Typography className={classes.sectionHead} color="primary" variant="display1">Task Items</Typography>
+    <Typography className={classes.margin} color="primary" variant="display1">Task Items</Typography>
     <div className={classes.taskContainer}>
       <List>
         {task.items.map((item, i) => (
@@ -59,11 +66,11 @@ const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemCo
            />
         ))}
       </List>
-      <TextSubmit label='Add Task' submit={(value) => {addItem({
+      <TextSubmit label='Add Task' submit={(value) => addItem({
         title: value,
-        taskId: task.id})}}/>
+        taskId: task.id})}/>
     </div>
-    <Typography className={classes.sectionHead} color="primary" variant="display1">Comments</Typography>
+    <Typography className={classes.margin} color="primary" variant="display1">Comments</Typography>
     <div className={classes.commentContainer}>
       {task.comments.map((comment, i) => {
 
@@ -76,11 +83,16 @@ const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemCo
           </div>
         )
       })}
-      <TextSubmit label='Add Comment' submit={(value) => {addComment({
+      <TextSubmit label='Add Comment' submit={(value) => addComment({
         message: value,
         user: currentUser,
         createdDate: Date.now(),
-        taskId: task.id})}}/>
+        taskId: task.id})}/>
+    </div>
+    <div className={classes.topMargin}>
+      <Button onClick={() => removeTask(task.id)} classes={{root: classes.remove}} variant="fab">
+        <Delete />
+      </Button>
     </div>
   </div>
 )
@@ -93,6 +105,8 @@ TaskDetails.propTypes = {
   addItem: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
+  removeTask: PropTypes.func.isRequired,
+  //header: PropTypes.func.isRequired, reactnode
   users: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 }
 
@@ -101,7 +115,8 @@ const mapDispatchToProps = {
   removeItem   : actions.removeItem,
   setItemComplete: actions.setItemComplete,
   addComment   : actions.addComment,
-  removeComment: actions.removeComment
+  removeComment: actions.removeComment,
+  removeTask: actions.removeTask
 }
 
 export default connect(null, mapDispatchToProps )(withStyles(styles)(TaskDetails))

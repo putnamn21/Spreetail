@@ -9,13 +9,19 @@ import Modal from 'material-ui/Modal'
 import Paper from 'material-ui/Paper'
 import TaskDetails from './TaskDetails'
 import CardComponent from './Card'
+import Button from 'material-ui/Button'
+import Clear from '@material-ui/icons/Clear'
 
 
-const styles = {
+const styles = (theme) => ({
   container: {
     minWidth: '200px',
     margin: '2rem',
     cursor: 'pointer'
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   divider : {
     margin: '1rem 0'
@@ -39,8 +45,15 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  remove: {
+    backgroundColor: theme.palette.error.light,
+    color: '#fff',
+    ['&:hover']: {
+      backgroundColor: theme.palette.error.main
+    }
   }
-}
+})
 
 
 class Task extends React.Component {
@@ -85,7 +98,16 @@ class Task extends React.Component {
           open={this.state.modalOpen}
           onClose={this.handleClose}>
           <Paper className={classes.paper}>
-            <TaskDetails task={task} {...props}/>
+            <div className={classes.header}>
+              <Typography color="default" variant="display3" align="center">{task.title}</Typography>
+              <Button classes={{root: classes.remove}} variant="fab" mini onClick={this.handleClose}>
+                <Clear/>
+              </Button>
+            </div>
+            <Divider className={classes.divider}/>
+            <TaskDetails
+              task={task}
+              closeTask={this.handleClose} {...props}/>
           </Paper>
         </Modal>
       </CardComponent>

@@ -23,16 +23,10 @@ const addTask = (state, { payload }) => update(state, {
   }
 })
 
-const removeTask = (state, {payload}) => {
-  let index = findIndex(state.tasks, {id: payload})
-  if(index > -1){
-    return update(state, {
-      tasks: {
-        $unset: [index]
-      }
-    })
-  } else return state
-}
+const removeTask = (state, {payload}) => update(state, {
+  tasks: tasks => tasks.filter((task) => task.id !== payload)
+})
+
 
 const addItem = (state, {payload}) => {
   let index = findIndex(state.tasks, {id: payload.taskId})
