@@ -7,7 +7,8 @@ import lime from 'material-ui/colors/lime'
 
 import Header from './Header'
 import RegisterUser from './RegisterUser'
-import withUsers from '../containers/Users'
+import withUsers from '../containers/UsersHOC'
+import Tasks from './Tasks'
 
 
 const theme = createMuiTheme({
@@ -33,9 +34,9 @@ const App = ({currentUser, users, selectUser}) => (
     <div style={pageBackground}>
       <CssBaseline/>
       <Header user={currentUser !== null ? users[currentUser] : null} />
-      {currentUser !== null
-        ?  <p>Hello Worl</p>
-        :  <RegisterUser users={users} selectUser={selectUser}/>
+      {currentUser == null
+        ?  <RegisterUser users={users} selectUser={selectUser}/>
+        :  <Tasks currentUser={currentUser} users={users}/>
       }
     </div>
   </MuiThemeProvider>

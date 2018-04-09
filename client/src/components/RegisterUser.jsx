@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import Button from 'material-ui/Button'
-import Card, { CardContent } from 'material-ui/Card'
-import Grow from 'material-ui/transitions/Grow'
 import { withStyles } from 'material-ui/styles'
+import CardComponent from './Card'
 
 const styles = () => ({
   container: {
@@ -40,20 +39,16 @@ const RegisterUser = ({users, classes, selectUser}) => {
               className={classes.usersWrap}
               justify="space-around">
               {availableUsers.map((user, i) => (
-                <Grow in={true} timeout={1000} key={i}>
-                  <Card className={classes.card}>
-                    <CardContent>
-                      <Typography variant="title" align="center" gutterBottom color="textSecondary">
-                      {`${user.fName} ${user.lName}`}
-                      </Typography>
-                      <div className={classes.center}>
-                        <Button
-                        color="primary"
-                        onClick={()=> selectUser(i)}>Select</Button>
-                      </div>
-                      </CardContent>
-                  </Card>
-                </Grow>
+                <CardComponent key={i}>
+                  <Typography variant="title" align="center" gutterBottom color="textSecondary">
+                    {`${user.fName} ${user.lName}`}
+                  </Typography>
+                  <div className={classes.center}>
+                    <Button
+                      color="primary"
+                      onClick={()=> selectUser(i)}>Select</Button>
+                  </div>
+                </CardComponent>
               ))}
           </Grid>
           : <Typography variant="title" align="center">Sorry, all users are taken</Typography>}

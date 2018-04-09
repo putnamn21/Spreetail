@@ -44,12 +44,14 @@ const withTasks = (Child) => props => <Child {...props}/>
 
 const mapStateToProps = ({filters, tasks}) => {
   return ({
-    tasks: filterTasks(filters.selected, tasks)
+    tasks: filterTasks(filters.selected, tasks),
+    filters
   })
 }
 
 const mapDispatchToProps = {
-  selectUser: actions.selectUser
+  addTask: actions.addTask,
+  changeFilter: actions.changeFilter
 }
 
 export default (Child) => connect(mapStateToProps, mapDispatchToProps)(withTasks(Child))
