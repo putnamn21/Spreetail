@@ -18,16 +18,25 @@ const styles = (theme) => ({
   divider : {
     margin: '1rem 0'
   },
-  commentContainer: {
-    paddingTop: '1px',
+  taskContainer: {
+    padding: '0 1rem 1rem 1rem',
     borderRadius: '3px',
-    backgroundColor: theme.palette.grey[300]
+    backgroundColor: theme.palette.grey[200]
+  },
+  commentContainer: {
+    padding: '1px 1rem 1rem 1rem',
+    borderRadius: '3px',
+    backgroundColor: theme.palette.grey[200]
   },
   comment: {
     padding: '0.5rem',
-    margin: '0.5rem',
+    margin: '1rem 0',
     borderRadius: '3px',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    boxShadow: '1px 1px 6px rgba(0,0,0,0.3)'
+  },
+  sectionHead: {
+    margin: '1rem 0'
   }
 })
 
@@ -35,23 +44,26 @@ const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemCo
   <div>
     <Typography color="primary" variant="display3" align="center">{task.title}</Typography>
     <Divider className={classes.divider}/>
-    <List>
-      {task.items.map((item, i) => (
-        <TaskItem
-          key={i}
-          id={i}
-          item={item}
-          currentUser={currentUser}
-          taskId={task.id}
-          removeItem={removeItem}
-          setItemComplete={setItemComplete}
-         />
-      ))}
-    </List>
-    <TextSubmit label='Add Task' submit={(value) => {addItem({
-      title: value,
-      taskId: task.id})}}/>
-    <Typography color="textSecondary" variant="display1" align="left" gutterBottom>Comments</Typography>
+    <Typography className={classes.sectionHead} color="primary" variant="display1">Task Items</Typography>
+    <div className={classes.taskContainer}>
+      <List>
+        {task.items.map((item, i) => (
+          <TaskItem
+            key={i}
+            id={i}
+            item={item}
+            currentUser={currentUser}
+            taskId={task.id}
+            removeItem={removeItem}
+            setItemComplete={setItemComplete}
+           />
+        ))}
+      </List>
+      <TextSubmit label='Add Task' submit={(value) => {addItem({
+        title: value,
+        taskId: task.id})}}/>
+    </div>
+    <Typography className={classes.sectionHead} color="primary" variant="display1">Comments</Typography>
     <div className={classes.commentContainer}>
       {task.comments.map((comment, i) => {
 
@@ -59,9 +71,8 @@ const TaskDetails = ({classes, task, addItem, addComment, currentUser, setItemCo
 
         return (
           <div className={classes.comment} key={i}>
-            <Typography color="textSecondary" variant="body2">{user.fName} {user.lName}</Typography>
             <Typography variant="title">{comment.message}</Typography>
-            <Typography variant="caption">{moment(comment.createdDate).format('MMM Do, h:mm a')}</Typography>
+            <Typography variant="caption">{user.fName} {user.lName} - {moment(comment.createdDate).format('MMM Do, h:mm a')}</Typography>
           </div>
         )
       })}

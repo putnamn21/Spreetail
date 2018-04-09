@@ -8,6 +8,11 @@ import Delete from '@material-ui/icons/Delete'
 
 const TaskItem = ({item, id, currentUser, taskId, setItemComplete, removeItem}) => (
   <ListItem
+    style={{
+      backgroundColor: '#fff',
+      margin: '1rem 0',
+      boxShadow: '1px 1px 6px rgba(0,0,0,0.3)'
+    }}
     dense
     button
     onClick={() => setItemComplete({

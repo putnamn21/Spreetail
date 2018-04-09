@@ -28,7 +28,7 @@ const styles = {
   paper: {
     maxHeight: '95%',
     overflow: 'auto',
-    padding: '1rem',
+    padding: '2rem',
     maxWidth: '60rem',
     width: '100%',
     '&:focus': {
