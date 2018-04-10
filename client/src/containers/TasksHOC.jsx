@@ -3,7 +3,12 @@ import actions from '../actions'
 import constants from '../constants'
 import { connect } from 'react-redux'
 
-//funciton to apply selected state filter
+/**
+ * Allows you to limit tasks to those that are complete or in progress
+ * @param  {string} filter one of constants.filters
+ * @param  {object[]} tasks  state.tasks[]
+ * @return {object[]}        filtered tasks
+ */
 const filterTasks = (filter, tasks) => {
 
   const filters = constants.filters
@@ -14,7 +19,7 @@ const filterTasks = (filter, tasks) => {
     case filters.FILTER_COMPLETE:
       filteredTasks = tasks.filter(task => task.items.reduce(
         (sum, item) => {
-          return sum && item.complete
+          return sum && item.complete//sum will remain false if one item.complete is false
         }, true))
       break
     case filters.FILTER_IN_PROGRESS:
@@ -28,7 +33,7 @@ const filterTasks = (filter, tasks) => {
           allComplete: true,
           atleastOneComplete: false
         })
-        return !allComplete && atleastOneComplete
+        return !allComplete && atleastOneComplete //make sure at least one is complete and that not all are complete
       })
       break
     default:

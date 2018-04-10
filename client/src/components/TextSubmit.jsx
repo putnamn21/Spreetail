@@ -61,6 +61,7 @@ class TextSubmit extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <TextField
             error={error}
+            placeholder="Press enter to submit"
             label={error ? 'Error: cannot be empty' : label}
             className={classes.textField}
             value={fieldValue}

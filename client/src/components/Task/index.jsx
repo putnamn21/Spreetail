@@ -8,7 +8,7 @@ import Divider from 'material-ui/Divider'
 import Modal from 'material-ui/Modal'
 import Paper from 'material-ui/Paper'
 import TaskDetails from './TaskDetails'
-import CardComponent from './Card'
+import CardComponent from '../Card'
 import Button from 'material-ui/Button'
 import Clear from '@material-ui/icons/Clear'
 

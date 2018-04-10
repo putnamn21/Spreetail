@@ -1,11 +1,14 @@
 import { createAction } from 'redux-actions'
 import constants from './constants'
 
-const remoteAction = (actionType, remote) => createAction(actionType, null, () => ({remote: remote}))
+/**
+ * calls createAction with meta.remote as true or false
+ * @param  {string} actionName
+ * @param  {boolean} remote - whether this action should be passed up to the remote server
+ * @return {object} - returns a [flux-standard-action]{@link https://github.com/redux-utilities/flux-standard-action}
+ */
+export const remoteAction = (actionName, remote) => createAction(actionName, null, () => ({remote: remote}))
 
-
-//NOTE: client will pass up individual actions, e.g. select user and server will always
-//respond by dispatching setState to client, to overwrite all local state to match server
 export default {
   setState       : remoteAction(constants.SET_STATE, false),
   selectUser     : remoteAction(constants.SELECT_USER, true),
@@ -15,5 +18,4 @@ export default {
   setItemComplete: remoteAction(constants.SET_ITEM_COMPLETE, true),
   removeItem     : remoteAction(constants.REMOVE_ITEM, true),
   addComment     : remoteAction(constants.ADD_COMMENT, true),
-  removeComment  : remoteAction(constants.REMOVE_COMMENT, true)
 }

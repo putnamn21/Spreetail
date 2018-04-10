@@ -1,20 +1,26 @@
 {
   "users": [
     {
-      "fName": "Troy",
-      "lName": "Smith",
+      "fName": "Jason",
+      "lName": "Barker",
       "isActive": false,
       "socketId": null
     },
     {
-      "fName": "Drew",
-      "lName": "Gates",
+      "fName": "Nick",
+      "lName": "Ebert",
       "isActive": false,
       "socketId": null
     },
     {
-      "fName": "Sheryl",
-      "lName": "Deringer",
+      "fName": "Dalton",
+      "lName": "Wignall",
+      "isActive": false,
+      "socketId": null
+    },
+    {
+      "fName": "Nathan",
+      "lName": "Putnam",
       "isActive": false,
       "socketId": null
     }
@@ -23,7 +29,7 @@
     {
       "id": "hardcoded-1",
       "title": "Interview for Spreetail",
-      "createdBy": 1,
+      "createdBy": 3,
       "items": [
         {
           "title": "Wire up Redux with Sockets.io",
@@ -45,6 +51,20 @@
           "createdDate": "2018-04-08T11:37:42.000-06:00"
         }
       ]
+    },
+    {
+      "id": "hardcoded-3",
+      "title": "Another Task",
+      "createdBy": 3,
+      "items": [
+        {
+          "title": "my checklist item is done when app initialized",
+          "complete": true,
+          "completedBy": 1,
+          "completedDate": "2018-04-08T09:37:42.000-06:00"
+        }
+      ],
+      "comments": []
     }
   ]
 }

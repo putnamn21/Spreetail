@@ -2,11 +2,10 @@ import update from 'immutability-helper'
 import constants from './constants'
 import {uniqueId, findIndex} from 'lodash'
 
-const setState = (state, action) => {
-  console.log(action.payload)
-  if(action.payload){
+const setState = (state, { payload }) => {
+  if(payload){
     return update(state, {
-      $merge: action.payload
+      $merge: payload
     })
   } else return state
 }
@@ -50,7 +49,6 @@ const addItem = (state, {payload}) => {
 
 const setItemComplete = (state, {payload}) => {
   let index = findIndex(state.tasks, {id: payload.taskId})
-  console.log(index)
   if (index > -1){
     return update(state, {
       tasks: {
@@ -74,7 +72,7 @@ const removeItem = (state, {payload}) => {
     return update(state, {
       tasks: {
         [index] : {
-          items: items => items.filter((el,i) => i !== payload.itemId)
+          items: {$splice: [[payload.itemId, 1]]}
         }
       }
     })
@@ -106,7 +104,7 @@ const removeComment = (state, {payload}) => {
     return update(state, {
       tasks: {
         [index] : {
-          comments: comments => comments.filter((el,i) => i !== payload.commentId)
+          comments: {$splice: [[payload.commentId, 1]]}
         }
       }
     })
@@ -114,12 +112,12 @@ const removeComment = (state, {payload}) => {
 }
 
 export default {
-  [constants.SET_STATE]     : setState,
-  [constants.ADD_TASK]      : addTask,
-  [constants.REMOVE_TASK]   : removeTask,
-  [constants.ADD_ITEM]      : addItem,
+  [constants.SET_STATE]        : setState,
+  [constants.ADD_TASK]         : addTask,
+  [constants.REMOVE_TASK]      : removeTask,
+  [constants.ADD_ITEM]         : addItem,
   [constants.SET_ITEM_COMPLETE]: setItemComplete,
-  [constants.REMOVE_ITEM]   : removeItem,
-  [constants.ADD_COMMENT]   : addComment,
-  [constants.REMOVE_COMMENT]: removeComment
+  [constants.REMOVE_ITEM]      : removeItem,
+  [constants.ADD_COMMENT]      : addComment,
+  [constants.REMOVE_COMMENT]   : removeComment
 }

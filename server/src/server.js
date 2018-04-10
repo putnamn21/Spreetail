@@ -16,7 +16,7 @@ export default function startServer(store) {
       store.dispatch(action)
     })
     socket.on('disconnect', (reason) => {
-      console.log(reason)
+      console.log('client disconnect: ',reason)
       store.dispatch(actions.unselectUser(socket.id))
     })
   })

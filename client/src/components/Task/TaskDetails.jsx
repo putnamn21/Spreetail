@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import actions from '../actions'
+import actions from '../../actions'
 import moment from 'moment'
 import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import Delete from '@material-ui/icons/Delete'
 import List from 'material-ui/List'
 import TaskItem from './TaskItem'
 
-import TextSubmit from './TextSubmit'
+import TextSubmit from '../TextSubmit'
 
 const styles = (theme) => ({
   container: {
@@ -106,7 +105,6 @@ TaskDetails.propTypes = {
   addComment: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   removeTask: PropTypes.func.isRequired,
-  //header: PropTypes.func.isRequired, reactnode
   users: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 }
 

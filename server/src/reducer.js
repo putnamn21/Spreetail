@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 import commonReducers from '../../common/reducer'
-import initialState from '../initialState.json'
+import initialState from './initialState.json'
 import constants from './constants'
 import update from 'immutability-helper'
 import { findIndex } from 'lodash'
